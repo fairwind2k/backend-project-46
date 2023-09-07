@@ -1,0 +1,8 @@
+# Ignore all logfiles and tempfiles.
+/log/*
+
+# Ignore master key for decrypting credentials and more.
+node_modules/
+
+# Ignore coverage files
+/coverage
