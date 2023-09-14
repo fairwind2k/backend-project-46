@@ -7,6 +7,7 @@ program
   .version('1.0.0')
   .arguments('<filepath1> <filepath2>')
   .helpOption('-h, --help', 'output usage information')
-  .option('-f, --format <type>', 'output format');
+  .option('-f, --format <type>', 'output format')
+  .command('parser <filepath1> <filepath2>', 'print arrays');
 
-program.parse();
+program.parse(process.argv);
