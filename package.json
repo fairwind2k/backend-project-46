@@ -9,6 +9,9 @@
   },
   "author": "Natalia Flerko",
   "license": "ISC",
+  "bin": {
+    "gendiff": "bin/gendiff.js"
+  },
   "devDependencies": {
     "eslint": "^8.48.0",
     "eslint-config-airbnb-base": "^15.0.0",
