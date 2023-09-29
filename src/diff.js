@@ -1,10 +1,9 @@
 import _ from 'lodash';
-import fs from 'fs';
-import makePath from './helpers/makePath.js';
+import parseFile from './helpers/parseFile.js';
 
 const gendiff = (filepath1, filepath2, format = 'plain') => {
-  const data1 = JSON.parse(fs.readFileSync(makePath(filepath1)));
-  const data2 = JSON.parse(fs.readFileSync(makePath(filepath2)));
+  const data1 = parseFile(filepath1);
+  const data2 = parseFile(filepath2);
   const keys1 = Object.keys(data1);
   const keys2 = Object.keys(data2);
   const keys = _.union(keys1, keys2).sort();
