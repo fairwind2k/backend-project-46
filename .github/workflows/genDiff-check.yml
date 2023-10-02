@@ -9,5 +9,6 @@ jobs:
               with:
                 node-version: '18.x'
                 cache: 'npm'
+            - run: make install    
             - run: make lint
             - run: make test
