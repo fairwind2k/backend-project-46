@@ -1,7 +1,9 @@
 import _ from 'lodash';
 import parseFile from './helpers/parseFile.js';
 
-const gendiff = (filepath1, filepath2, format = 'plain') => {
+//  gendiff = (filepath1, filepath2, format = 'plain')
+
+const gendiff = (filepath1, filepath2) => {
   const data1 = parseFile(filepath1);
   const data2 = parseFile(filepath2);
   const keys1 = Object.keys(data1);
