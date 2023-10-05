@@ -8,7 +8,7 @@ import expectString from './__fixtures__/expected_result.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const getFixturePath = (filename) => path.join(__dirname, '../fixtures', filename);
+const getFixturePath = (filename) => path.join(__dirname, '../__fixtures__', filename);
 const pathJson1 = getFixturePath('file1.json');
 const pathJson2 = getFixturePath('file2.json');
 
