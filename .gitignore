@@ -1,2 +1,5 @@
 # Ignore master key for decrypting credentials and more.
 node_modules/
+coverage
+*.log
+.DS_Store
