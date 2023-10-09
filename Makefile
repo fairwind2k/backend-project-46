@@ -11,7 +11,7 @@ lint:
 	npx eslint .
 
 test:
-	npx jest --watch
+	npx jest
 
 test-coverage:
 	npm test -- --coverage --coverageProvider=v8
