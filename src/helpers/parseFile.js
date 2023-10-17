@@ -1,13 +1,12 @@
 import fs from 'fs';
+import yaml from 'js-yaml';
+import path from 'path';
 import makePath from './makePath.js';
 
 const parseFile = (filepath) => {
-  const arr = filepath.split('.');
-  const [, extention] = arr;
-  let data = [];
-  if (extention === 'json') {
-    data = JSON.parse(fs.readFileSync(makePath(filepath)));
-  }
+  const extention = path.extname(filepath);
+  const unparsedData = fs.readFileSync(makePath(filepath));
+  const data = (extention === 'json') ? JSON.parse(unparsedData) : yaml.load(unparsedData);
   return data;
 };
 
