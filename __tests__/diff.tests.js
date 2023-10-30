@@ -18,8 +18,8 @@ const pathYml2 = getFixturePath('file2.yml');
 
 const expectString = readFileSync(getFixturePath('expected.txt'), 'utf8');
 
-test('testing function gendiff(filepath1, filepath2)', () => {
-  expect(gendiff(pathJson1, pathJson2)).toBe(expectString);
-  expect(gendiff(pathYaml1, pathYaml2)).toBe(expectString);
-  expect(gendiff(pathYml1, pathYml2)).toBe(expectString);
+test('testing function gendiff(filepath1, filepath2, formatName)', () => {
+  expect(gendiff(pathJson1, pathJson2, 'stylish')).toBe(expectString);
+  expect(gendiff(pathYaml1, pathYaml2, 'stylish')).toBe(expectString);
+  expect(gendiff(pathYml1, pathYml2, 'stylish')).toBe(expectString);
 });
