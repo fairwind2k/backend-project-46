@@ -3,3 +3,7 @@ node_modules/
 coverage
 *.log
 .DS_Store
+__fixtures__/file10.json
+__fixtures__/file20.json
+__fixtures__/expected2.txt
+__fixtures__/expec_stylish_flat.txt
