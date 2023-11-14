@@ -7,7 +7,7 @@ const makeStylish = (data) => {
     const leftShift = 2;
     const bracketIndent = replacer.repeat(replacerSize * (depth - 1));
 
-    const makeIndent = (status, depthLevel) => {
+    const makeIndent = (nodeStatus, depthLevel) => {
       const makeShift = (status) => {
         if (status === 'added') {
           return `+${replacer}`;
@@ -17,7 +17,7 @@ const makeStylish = (data) => {
         }
         return `${replacer.repeat(leftShift)}`;
       };
-      const spesialSymbols = makeShift(status);
+      const spesialSymbols = makeShift(nodeStatus);
       const indent = replacer.repeat((depthLevel * replacerSize) - leftShift);
       return `${indent}${spesialSymbols}`;
     };
@@ -36,7 +36,7 @@ const makeStylish = (data) => {
           });
           return ['{', ...line, `${makeIndent('unchanged', level)}}`].join('\n');
         };
-        return iterStr(dataValue, depth);
+        return iterStr(dataValue, depthLevel);
       };
 
       if (status === 'changed') {
