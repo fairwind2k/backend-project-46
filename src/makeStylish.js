@@ -7,7 +7,7 @@ const makeStylish = (data) => {
     const leftShift = 2;
     const bracketIndent = replacer.repeat(replacerSize * (depth - 1));
 
-    const makeIndent = (status, depth) => {
+    const makeIndent = (status, depthLevel) => {
       const makeShift = (status) => {
         if (status === 'added') {
           return `+${replacer}`;
@@ -18,7 +18,7 @@ const makeStylish = (data) => {
         return `${replacer.repeat(leftShift)}`;
       };
       const spesialSymbols = makeShift(status);
-      const indent = replacer.repeat((depth * replacerSize) - leftShift);
+      const indent = replacer.repeat((depthLevel * replacerSize) - leftShift);
       return `${indent}${spesialSymbols}`;
     };
 
@@ -27,24 +27,27 @@ const makeStylish = (data) => {
         value, value1, value2, status, key, children,
       } = node;
 
-      const makeString = (dataValue) => {
-        if (!_.isObject(dataValue)) return `${dataValue}`;
-        const line = Object.entries(dataValue).map(([keyObj, valueObj]) => {
-          const str = `${makeIndent('unchanged', depth + 1)}${keyObj}: ${makeString(valueObj)}`;
-          return str;
-        });
-        return ['{', ...line, `${makeIndent('unchanged', depth)}}`].join('\n');
+      const makeString = (dataValue, depthLevel) => {
+        const iterStr = (dataV, level) => {
+          if (!_.isObject(dataV)) return `${dataV}`;
+          const line = Object.entries(dataV).map(([keyV, valueV]) => {
+            const str = `${makeIndent('unchanged', level + 1)}${keyV}: ${iterStr(valueV, level + 1)}`;
+            return str;
+          });
+          return ['{', ...line, `${makeIndent('unchanged', level)}}`].join('\n');
+        };
+        return iterStr(dataValue, depth);
       };
 
       if (status === 'changed') {
-        return [`${makeIndent('removed', depth)}${key}: ${makeString(value1)}`,
-          `${makeIndent('added', depth)}${key}: ${makeString(value2)}`].join('\n');
+        return [`${makeIndent('removed', depth)}${key}: ${makeString(value1, depth)}`,
+          `${makeIndent('added', depth)}${key}: ${makeString(value2, depth)}`].join('\n');
       }
 
       if (children !== undefined) {
         return `${makeIndent('nested', depth)}${key}: ${iter(children, depth + 1)}`;
       }
-      return `${makeIndent(status, depth)}${key}: ${makeString(value)}`;
+      return `${makeIndent(status, depth)}${key}: ${makeString(value, depth)}`;
     });
 
     return [
