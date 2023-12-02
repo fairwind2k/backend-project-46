@@ -1,6 +1,6 @@
 import parseFile from './helpers/parsers.js';
 import makeTree from './helpers/makeTree.js';
-import makeStylish from './makeStylish.js';
+import makeStylish from './formatters/makeStylish.js';
 
 const gendiff = (filepath1, filepath2, formatName = 'stylish') => {
   const data1 = parseFile(filepath1);
