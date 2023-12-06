@@ -75,22 +75,27 @@ const makePlain = (data1) => {
       return `${nodeValue}`;
     };
 
+    const getPath = (nodeKey, nodeStatus, depthLevel = 1) => {
+      if (nodeStatus === 'added' || nodeStatus === 'removed') {
+        return `'${nodeKey}'`;
+      }
+    };
+
     const entries = currentValue.map((node) => {
       const {
         key, value, value1, value2, status, children,
       } = node;
       if (status === 'added') {
-        return `Property '${key}' was ${status} with value: ${getString(value)}`;
+        return `Property ${getPath(key, status)} was ${status} with value: ${getString(value)} depth ${depth}`;
       }
       if (status === 'removed') {
-        return `Property '${key}' was ${status}`;
+        return `Property ${getPath(key, status)} was ${status} depth ${depth}`;
       }
       if (status === 'changed') {
         return `Property '${key}' was updated. From ${getString(value1)} to ${getString(value2)}`;
       }
       if (children !== undefined) {
-        return iter(children, depth + 1);
-        //  return '555';
+        return `'${key}'.${iter(children, depth + 1)}`;
       }
       return '';
     });
