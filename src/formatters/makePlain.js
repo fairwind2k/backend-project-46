@@ -75,34 +75,30 @@ const makePlain = (data1) => {
       return `${nodeValue}`;
     };
 
-    const getPath = (nodeKey, nodeStatus, depthLevel = 1) => {
-      if (nodeStatus === 'added' || nodeStatus === 'removed') {
-        return `'${nodeKey}'`;
-      }
-    };
-
     const entries = currentValue.map((node) => {
       const {
         key, value, value1, value2, status, children,
       } = node;
+      const currentKey = [...acc, key].join('.');
       if (status === 'added') {
-        return `Property ${getPath(key, status)} was ${status} with value: ${getString(value)} depth ${depth}`;
+        return `Property '${currentKey}' was ${status} with value: ${getString(value)}`;
       }
       if (status === 'removed') {
-        return `Property ${getPath(key, status)} was ${status} depth ${depth}`;
+        return `Property '${currentKey}' was ${status}`;
       }
       if (status === 'changed') {
-        return `Property '${key}' was updated. From ${getString(value1)} to ${getString(value2)}`;
+        return `Property '${currentKey}' was updated. From ${getString(value1)} to ${getString(value2)}`;
       }
-      if (children !== undefined) {
-        return `'${key}'.${iter(children, depth + 1)}`;
+      if (status === 'nested' && children !== undefined) {
+        acc.push(key);
+        return iter(children, acc, depth + 1);
       }
       return '';
     });
     return entries.filter((string) => (string !== '')).join('\n');
   };
 
-  return iter(data1, 1);
+  return iter(data1, [], 1);
 };
 
 console.log(makePlain(data));
