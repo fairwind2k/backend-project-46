@@ -6,3 +6,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/eef05403244f66d8a0be/maintainability)](https://codeclimate.com/github/fairwind2k/backend-project-46/maintainability)
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/eef05403244f66d8a0be/test_coverage)](https://codeclimate.com/github/fairwind2k/backend-project-46/test_coverage)
+
+How it works:
+
+[![asciicast](https://asciinema.org/a/I4bKVkkfpZsIphee5L5B8U8lg.svg)](https://asciinema.org/a/I4bKVkkfpZsIphee5L5B8U8lg)
