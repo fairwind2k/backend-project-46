@@ -3,8 +3,7 @@ import fs from 'fs';
 import makePath from './helpers/makePath.js';
 import parseFile from './helpers/parsers.js';
 import makeTree from './helpers/makeTree.js';
-import makeStylish from './formatters/makeStylish.js';
-import makePlain from './formatters/makePlain.js';
+import getOutput from './formatters/getOutput.js';
 
 const getPath = (filepath) => {
   const unparsedData = fs.readFileSync(makePath(filepath));
@@ -12,16 +11,6 @@ const getPath = (filepath) => {
 };
 
 const getExtension = (filepath) => path.extname(filepath);
-
-const getOutput = (tree, formatter) => {
-  if (formatter === 'plain') {
-    return makePlain(tree);
-  }
-  if (formatter === 'json') {
-    return JSON.stringify(tree);
-  }
-  return makeStylish(tree);
-};
 
 const gendiff = (filepath1, filepath2, formatName = 'stylish') => {
   const path1 = getPath(filepath1);
