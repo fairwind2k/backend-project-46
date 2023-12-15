@@ -1,8 +1,8 @@
 import makePlain from './makePlain.js';
 import makeStylish from './makeStylish.js';
 
-const getOutput = (tree, formatter) => {
-  switch (formatter) {
+const getOutput = (tree, format) => {
+  switch (format) {
     case 'plain':
       return makePlain(tree);
     case 'json':
@@ -10,7 +10,7 @@ const getOutput = (tree, formatter) => {
     case 'stylish':
       return makeStylish(tree);
     default:
-      throw new Error('Error! Choose the option!');
+      throw new Error(`Unsupported format ${format}`);
   }
 };
 
